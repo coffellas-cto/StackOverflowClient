@@ -39,7 +39,7 @@
     cell.userNameLabel.text = curUser.name;
     cell.userTypeLabel.text = curUser.userType;
     cell.userSiteLabel.text = curUser.websiteURL;
-    cell.reputationLabel.text = [NSString stringWithFormat:@"%lu", curUser.reputation];
+    cell.reputationLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)curUser.reputation];
     cell.backgroundColor = indexPath.row % 2 ? [UIColor whiteColor] : [UIColor colorWithWhite:0.96 alpha:1];
     
     __block NSString *avatarURL = curUser.profileImageURL;

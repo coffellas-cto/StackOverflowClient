@@ -149,24 +149,6 @@
             </objects>
             <point key="canvasLocation" x="1629" y="28"/>
         </scene>
-        <!--Detail View Controller-->
-        <scene sceneID="xxb-nS-6mD">
-            <objects>
-                <viewController id="2oZ-bw-dUM" customClass="GDDetailViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0Bk-e6-bMk"/>
-                        <viewControllerLayoutGuide type="bottom" id="DDm-nx-qaV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zDb-wE-81z">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ftv-gS-WSX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="45" y="141"/>
-        </scene>
         <!--Menu-->
         <scene sceneID="WQ6-73-Q7J">
             <objects>
@@ -213,10 +195,9 @@
         <!--Split View Controller-->
         <scene sceneID="CZW-dU-ais">
             <objects>
-                <splitViewController id="bwd-3c-PZx" sceneMemberID="viewController">
+                <splitViewController id="bwd-3c-PZx" customClass="GDSplitViewController" sceneMemberID="viewController">
                     <connections>
                         <segue destination="EdS-ND-kYY" kind="relationship" relationship="masterViewController" id="5HP-n5-G3H"/>
-                        <segue destination="2oZ-bw-dUM" kind="relationship" relationship="detailViewController" id="tEn-6C-5Zi"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8E-bT-1C7" userLabel="First Responder" sceneMemberID="firstResponder"/>
