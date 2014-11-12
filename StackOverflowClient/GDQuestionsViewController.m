@@ -7,8 +7,11 @@
 //
 
 #import "GDQuestionsViewController.h"
+#import "GDQuestion.h"
 
-@interface GDQuestionsViewController ()
+@interface GDQuestionsViewController () {
+    NSMutableArray *questionsArray;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
@@ -23,7 +26,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [questionsArray count];
 }
 
 #pragma mark - UISearchBarDelegate Methods
@@ -51,6 +54,7 @@
     
     _tableView.estimatedRowHeight = 420;
     _tableView.rowHeight = UITableViewAutomaticDimension;
+    questionsArray = [NSMutableArray array];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

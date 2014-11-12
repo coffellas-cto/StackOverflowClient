@@ -12,6 +12,7 @@
 		9A0B18D31A1303B400C1CC6C /* GDMasterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B18D21A1303B400C1CC6C /* GDMasterTableViewController.m */; };
 		9A78F0161A1403B700DC562D /* GDSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A78F0151A1403B700DC562D /* GDSplitViewController.m */; };
 		9A78F0191A140B4600DC562D /* GDQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A78F0181A140B4600DC562D /* GDQuestionsViewController.m */; };
+		9A78F0261A14219900DC562D /* GDQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A78F0251A14219900DC562D /* GDQuestion.m */; };
 		9AFA61E01A1173B60029386A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA61DF1A1173B60029386A /* main.m */; };
 		9AFA61E31A1173B60029386A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA61E21A1173B60029386A /* AppDelegate.m */; };
 		9AFA61E61A1173B60029386A /* StackOverflowClient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA61E41A1173B60029386A /* StackOverflowClient.xcdatamodeld */; };
@@ -47,6 +48,8 @@
 		9A78F0151A1403B700DC562D /* GDSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDSplitViewController.m; sourceTree = "<group>"; };
 		9A78F0171A140B4600DC562D /* GDQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDQuestionsViewController.h; sourceTree = "<group>"; };
 		9A78F0181A140B4600DC562D /* GDQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDQuestionsViewController.m; sourceTree = "<group>"; };
+		9A78F0241A14219900DC562D /* GDQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDQuestion.h; sourceTree = "<group>"; };
+		9A78F0251A14219900DC562D /* GDQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDQuestion.m; sourceTree = "<group>"; };
 		9AFA61DA1A1173B60029386A /* StackOverflowClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StackOverflowClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFA61DE1A1173B60029386A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AFA61DF1A1173B60029386A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 			children = (
 				9AFA620A1A1177060029386A /* GDUser.h */,
 				9AFA620B1A1177060029386A /* GDUser.m */,
+				9A78F0241A14219900DC562D /* GDQuestion.h */,
+				9A78F0251A14219900DC562D /* GDQuestion.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -308,6 +313,7 @@
 				9AFA620C1A1177060029386A /* GDUser.m in Sources */,
 				9A0B18CA1A12F70F00C1CC6C /* GDNetworkController.m in Sources */,
 				9A0B18D31A1303B400C1CC6C /* GDMasterTableViewController.m in Sources */,
+				9A78F0261A14219900DC562D /* GDQuestion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

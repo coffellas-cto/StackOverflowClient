@@ -13,6 +13,9 @@
 #pragma mark - Public Methods
 
 + (GDUser *)userWithJSONDictionary:(NSDictionary *)dic {
+    if (![dic isKindOfClass:[NSDictionary class]])
+        return nil;
+    
     GDUser *newUser = [[GDUser alloc] initWithUserID:dic[@"user_id"]];
     if (newUser) {
         newUser->_name = dic[@"display_name"];
@@ -29,9 +32,8 @@
     NSMutableArray *retVal = [NSMutableArray array];
     for (NSDictionary *userDic in JSONArray) {
         id newUser = [self userWithJSONDictionary:userDic];
-        if (newUser) {
+        if (newUser)
             [retVal addObject:newUser];
-        }
     }
     return retVal;
 }
