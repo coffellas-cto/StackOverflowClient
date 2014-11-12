@@ -11,6 +11,7 @@
 @interface GDNetworkController : NSObject
 
 + (void)setToken:(NSString *)token;
-+ (void)searchForUsersWithQuery:(NSString *)query completionHandler:(void (^)(NSArray *usersJSONArray, NSString *errorString))completion;
++ (NSURLSessionDataTask *)searchForUsersWithQuery:(NSString *)query completionHandler:(void (^)(NSArray *usersJSONArray, NSString *errorString))completion;
++ (NSURLSessionDataTask *)searchForQuestionsWithQuery:(NSString *)query completionHandler:(void (^)(NSArray *questionsJSONArray, NSString *errorString))completion;
 
 @end

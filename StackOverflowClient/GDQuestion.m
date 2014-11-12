@@ -32,7 +32,7 @@
         return nil;
     
     NSMutableArray *retVal = [NSMutableArray array];
-    for (id obj in retVal) {
+    for (id obj in JSONArray) {
         id newQuestion = [self questionWithJSONDictionary:obj];
         if (newQuestion)
             [retVal addObject:newQuestion];

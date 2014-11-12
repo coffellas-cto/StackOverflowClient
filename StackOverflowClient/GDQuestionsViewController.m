@@ -8,14 +8,23 @@
 
 #import "GDQuestionsViewController.h"
 #import "GDQuestion.h"
+#import "GDNetworkController.h"
 
 @interface GDQuestionsViewController () {
     NSMutableArray *questionsArray;
+    NSURLSessionDataTask *curDataTask;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation GDQuestionsViewController
+
+#pragma mark - Private Methods
+- (void)cancelCurTask {
+    if ([curDataTask state] != NSURLSessionTaskStateCompleted) {
+        [curDataTask cancel];
+    }
+}
 
 #pragma mark - UITableView Delegates Methods
 
@@ -39,6 +48,13 @@
     if ([searchText isEqualToString:@""] || (searchText == nil)) {
         return;
     }
+    
+    [self cancelCurTask];
+    curDataTask = [GDNetworkController searchForQuestionsWithQuery:searchText completionHandler:^(NSArray *questionsJSONArray, NSString *errorString) {
+        NSArray *newQuestionsArray = [GDQuestion questionsWithJSONArray:questionsJSONArray];
+        questionsArray = [NSMutableArray arrayWithArray:newQuestionsArray];
+        [_tableView reloadData];
+    }];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {

@@ -91,7 +91,7 @@
         
     [_activityIndicator startAnimating];
     
-    [GDNetworkController searchForUsersWithQuery:searchText completionHandler:^(NSArray *usersJSONArray, NSString *errorString) {
+    curDataTask = [GDNetworkController searchForUsersWithQuery:searchText completionHandler:^(NSArray *usersJSONArray, NSString *errorString) {
         [_activityIndicator stopAnimating];
         if (errorString) {
             NSLog(@"%@", errorString);

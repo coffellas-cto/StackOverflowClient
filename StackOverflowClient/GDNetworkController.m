@@ -22,9 +22,14 @@
     [[self controller] setToken:token];
 }
 
-+ (void)searchForUsersWithQuery:(NSString *)query completionHandler:(void (^)(NSArray *usersJSONArray, NSString *errorString))completion {
-    NSString *params = [[NSString stringWithFormat:@"&order=desc&inname=%@", query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [self performRequestWithParams:params completionHandler:completion];
++ (NSURLSessionDataTask *)searchForUsersWithQuery:(NSString *)query completionHandler:(void (^)(NSArray *usersJSONArray, NSString *errorString))completion {
+    NSString *params = [[NSString stringWithFormat:@"users?inname=%@", query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [self performRequestWithParams:params completionHandler:completion];
+}
+
++ (NSURLSessionDataTask *)searchForQuestionsWithQuery:(NSString *)query completionHandler:(void (^)(NSArray *questionsJSONArray, NSString *errorString))completion {
+    NSString *params = [[NSString stringWithFormat:@"questions?tagged=%@", query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [self performRequestWithParams:params completionHandler:completion];
 }
 
 #pragma mark - Private Class Methods
@@ -38,13 +43,12 @@
     return instance;
 }
 
-+ (void)performRequestWithParams:(NSString *)params completionHandler:(void (^)(id results, NSString *errorString))completion {
-    NSString *requestString = [NSString stringWithFormat:@"https://api.stackexchange.com/2.2/users?site=stackoverflow&token=%@", [[self controller] token]];
-    if (params) {
-        requestString = [requestString stringByAppendingString:params];
-    }
++ (NSURLSessionDataTask *)performRequestWithParams:(NSString *)params completionHandler:(void (^)(id results, NSString *errorString))completion {
+    NSString *requestString = @"https://api.stackexchange.com/2.2/";
+    requestString = [requestString stringByAppendingString:params];
+    requestString = [requestString stringByAppendingString:[NSString stringWithFormat:@"&order=desc&site=stackoverflow&token=%@", [[self controller] token]]];
     
-    [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:requestString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSURLSessionDataTask *retVal = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:requestString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSString *errorString = nil;
         id retVal = nil;
         if (error) {
@@ -68,7 +72,10 @@
             completion(retVal, errorString);
         });
         
-    }] resume];
+    }];
+    [retVal resume];
+    
+    return retVal;
 }
 
 @end
