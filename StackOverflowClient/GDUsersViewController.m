@@ -10,6 +10,7 @@
 #import "GDUserCell.h"
 #import "GDUser.h"
 #import "GDCacheController.h"
+#import "GDNetworkController.h"
 
 @interface GDUsersViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -87,36 +88,20 @@
     }
     
     [self cancelCurTask];
-    
-    searchText = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
+        
     [_activityIndicator startAnimating];
     
-    [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.stackexchange.com/2.2/users?order=desc&inname=%@&site=stackoverflow", searchText]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [_activityIndicator stopAnimating];
-        });
-        
-        if (error) {
-            NSLog(@"Response error: %@", error.localizedDescription);
+    [GDNetworkController searchForUsersWithQuery:searchText completionHandler:^(NSArray *usersJSONArray, NSString *errorString) {
+        [_activityIndicator stopAnimating];
+        if (errorString) {
+            NSLog(@"%@", errorString);
             return;
         }
         
-        NSDictionary *JSONdic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        if (error != nil) {
-            NSLog(@"Couldn't parse JSON response: %@", error.localizedDescription);
-            return;
-        }
-        
-        __block NSArray *newUsersArray = [GDUser usersWithJSONArray:JSONdic[@"items"]];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            usersArray = [NSMutableArray arrayWithArray:newUsersArray];
-            [_tableView reloadData];
-        });
-        
-    }] resume];
+        NSArray *newUsersArray = [GDUser usersWithJSONArray:usersJSONArray];
+        usersArray = [NSMutableArray arrayWithArray:newUsersArray];
+        [_tableView reloadData];
+    }];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
