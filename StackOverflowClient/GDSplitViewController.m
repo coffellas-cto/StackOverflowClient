@@ -8,10 +8,12 @@
 
 #import "GDSplitViewController.h"
 #import "GDUsersViewController.h"
+#import "GDQuestionsViewController.h"
 
 @interface GDSplitViewController () <UISplitViewControllerDelegate> {
     GDUsersViewController *usersVC;
-    BOOL collapseSecondaryVC;
+    GDQuestionsViewController *questionsVC;
+    BOOL collapsedSecondaryVC;
 }
 
 @end
@@ -22,6 +24,14 @@
 - (void)showUsersVC {
     [self createUsersVC];
     [self showDetailViewController:usersVC sender:self];
+}
+
+- (void)showQuestionsVC {
+    if (!questionsVC) {
+        questionsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"QUESTIONS_VC"];
+    }
+    
+    [self showDetailViewController:questionsVC sender:self];
 }
 
 #pragma mark - Private Methods
@@ -35,7 +45,13 @@
 - (BOOL)splitViewController:(UISplitViewController *)splitViewController
 collapseSecondaryViewController:(UIViewController *)secondaryViewController
   ontoPrimaryViewController:(UIViewController *)primaryViewController {
-    return YES;
+    // TODO: This Method is called only once. Get into it.
+    if (!collapsedSecondaryVC) {
+        collapsedSecondaryVC = YES;
+        return YES;
+    }
+    
+    return NO;
 }
 
 #pragma mark - Life Cycle

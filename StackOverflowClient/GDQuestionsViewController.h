@@ -1,5 +1,5 @@
 //
-//  GDSplitViewController.h
+//  GDQuestionsViewController.h
 //  StackOverflowClient
 //
 //  Created by Alex G on 12.11.14.
@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GDSplitViewController : UISplitViewController
-
-- (void)showUsersVC;
-- (void)showQuestionsVC;
+@interface GDQuestionsViewController : UIViewController
 
 @end

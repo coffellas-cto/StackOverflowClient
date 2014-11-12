@@ -61,6 +61,7 @@
     GDSplitViewController *splitVC = (GDSplitViewController *)self.splitViewController;
     switch (indexPath.row) {
         case 0:
+            [splitVC showQuestionsVC];
             break;
         case 1:
             [splitVC showUsersVC];
