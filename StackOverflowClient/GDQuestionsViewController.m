@@ -8,12 +8,15 @@
 
 #import "GDQuestionsViewController.h"
 #import "GDQuestion.h"
+#import "GDUser.h"
 #import "GDNetworkController.h"
+#import "GDQuestionCell.h"
 
 @interface GDQuestionsViewController () {
     NSMutableArray *questionsArray;
     NSURLSessionDataTask *curDataTask;
 }
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
@@ -29,7 +32,30 @@
 #pragma mark - UITableView Delegates Methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QUESTION_CELL" forIndexPath:indexPath];
+    GDQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QUESTION_CELL" forIndexPath:indexPath];
+    
+    GDQuestion *q = questionsArray[indexPath.row];
+    cell.userNameLabel.text = q.owner.name;
+    cell.questionTextLabel.text = q.title;
+    cell.answerCountLabel.text = [@(q.answerCount) stringValue];
+    cell.viewCountLabel.text = [@(q.viewCount) stringValue];
+    cell.answeredLabel.text = q.answered ? @"Answered" : @"Not answered";
+    
+    NSString *avatarURL = q.owner.profileImageURL;
+    
+    if (avatarURL) {
+        [GDNetworkController loadAvatarWithURL:avatarURL
+                                     indexPath:indexPath
+                             activityIndicator:cell.activityIndicatorAvatar
+                                     imageView:cell.avatarImageView
+                                    completion:^(UIImage *image, NSIndexPath *indexPathCompletion)
+         {
+             GDQuestionCell *cell = (GDQuestionCell *)[_tableView cellForRowAtIndexPath:indexPathCompletion];
+             [UIView transitionWithView:cell.avatarImageView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                 cell.avatarImageView.image = image;
+             } completion:nil];
+         }];
+    }
     
     return cell;
 }
@@ -50,7 +76,11 @@
     }
     
     [self cancelCurTask];
+    
+    [_activityIndicator startAnimating];
+    
     curDataTask = [GDNetworkController searchForQuestionsWithQuery:searchText completionHandler:^(NSArray *questionsJSONArray, NSString *errorString) {
+        [_activityIndicator stopAnimating];
         NSArray *newQuestionsArray = [GDQuestion questionsWithJSONArray:questionsJSONArray];
         questionsArray = [NSMutableArray arrayWithArray:newQuestionsArray];
         [_tableView reloadData];

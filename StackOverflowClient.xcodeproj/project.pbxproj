@@ -15,6 +15,7 @@
 		9A78F0261A14219900DC562D /* GDQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A78F0251A14219900DC562D /* GDQuestion.m */; };
 		9A78F0281A142DB700DC562D /* GDQuestionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A78F0271A142DB700DC562D /* GDQuestionTests.m */; };
 		9A78F02A1A142E0000DC562D /* questions.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A78F0291A142E0000DC562D /* questions.json */; };
+		9A80D8011A15501000FE424C /* GDQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A80D8001A15501000FE424C /* GDQuestionCell.m */; };
 		9AFA61E01A1173B60029386A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA61DF1A1173B60029386A /* main.m */; };
 		9AFA61E31A1173B60029386A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA61E21A1173B60029386A /* AppDelegate.m */; };
 		9AFA61E61A1173B60029386A /* StackOverflowClient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA61E41A1173B60029386A /* StackOverflowClient.xcdatamodeld */; };
@@ -54,6 +55,8 @@
 		9A78F0251A14219900DC562D /* GDQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDQuestion.m; sourceTree = "<group>"; };
 		9A78F0271A142DB700DC562D /* GDQuestionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDQuestionTests.m; sourceTree = "<group>"; };
 		9A78F0291A142E0000DC562D /* questions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = questions.json; sourceTree = "<group>"; };
+		9A80D7FF1A15501000FE424C /* GDQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDQuestionCell.h; sourceTree = "<group>"; };
+		9A80D8001A15501000FE424C /* GDQuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDQuestionCell.m; sourceTree = "<group>"; };
 		9AFA61DA1A1173B60029386A /* StackOverflowClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StackOverflowClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFA61DE1A1173B60029386A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AFA61DF1A1173B60029386A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -192,6 +195,8 @@
 			children = (
 				9AFA620E1A1186090029386A /* GDUserCell.h */,
 				9AFA620F1A1186090029386A /* GDUserCell.m */,
+				9A80D7FF1A15501000FE424C /* GDQuestionCell.h */,
+				9A80D8001A15501000FE424C /* GDQuestionCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AFA61E31A1173B60029386A /* AppDelegate.m in Sources */,
+				9A80D8011A15501000FE424C /* GDQuestionCell.m in Sources */,
 				9AFA61E01A1173B60029386A /* main.m in Sources */,
 				9AFA62141A11ED8D0029386A /* GDCacheController.m in Sources */,
 				9A0B18C61A12EDBF00C1CC6C /* WebViewController.m in Sources */,
