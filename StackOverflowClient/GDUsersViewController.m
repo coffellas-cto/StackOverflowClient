@@ -42,32 +42,20 @@
     cell.reputationLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)curUser.reputation];
     cell.backgroundColor = indexPath.row % 2 ? [UIColor whiteColor] : [UIColor colorWithWhite:0.96 alpha:1];
     
-    __block NSString *avatarURL = curUser.profileImageURL;
+    NSString *avatarURL = curUser.profileImageURL;
+    
     if (avatarURL) {
-        UIImage *avatarImage = [GDCacheController objectForKey:curUser.profileImageURL];
-        if (avatarImage) {
-            cell.avatarImageView.image = avatarImage;
-        }
-        else {
-            [cell.activityIndicatorAvatar startAnimating];
-            __block NSIndexPath *indexPathBlock = indexPath;
-            [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:avatarURL] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [cell.activityIndicatorAvatar stopAnimating];
-                });
-                
-                UIImage *newAvatar = [UIImage imageWithData:data];
-                if (newAvatar) {
-                    [GDCacheController setObject:newAvatar forKey:avatarURL ofLength:[data length]];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        GDUserCell *cell = (GDUserCell *)[_tableView cellForRowAtIndexPath:indexPathBlock];
-                        [UIView transitionWithView:cell.avatarImageView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-                            cell.avatarImageView.image = newAvatar;
-                        } completion:nil];
-                    });
-                }
-            }] resume];
-        }
+        [GDNetworkController loadAvatarWithURL:avatarURL
+                                     indexPath:indexPath
+                             activityIndicator:cell.activityIndicatorAvatar
+                                     imageView:cell.avatarImageView
+                                    completion:^(UIImage *image, NSIndexPath *indexPathCompletion)
+        {
+            GDUserCell *cell = (GDUserCell *)[_tableView cellForRowAtIndexPath:indexPathCompletion];
+            [UIView transitionWithView:cell.avatarImageView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                cell.avatarImageView.image = image;
+            } completion:nil];
+        }];
     }
     
     

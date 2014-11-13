@@ -7,6 +7,7 @@
 //
 
 #import "GDNetworkController.h"
+#import "GDCacheController.h"
 
 @interface GDNetworkController ()
 
@@ -30,6 +31,29 @@
 + (NSURLSessionDataTask *)searchForQuestionsWithQuery:(NSString *)query completionHandler:(void (^)(NSArray *questionsJSONArray, NSString *errorString))completion {
     NSString *params = [[NSString stringWithFormat:@"questions?tagged=%@", query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return [self performRequestWithParams:params completionHandler:completion];
+}
+
++ (void)loadAvatarWithURL:(NSString *)URL indexPath:(NSIndexPath *)indexPath activityIndicator:(UIActivityIndicatorView *)activityIndicator imageView:(UIImageView *)avatarImageView completion:(void (^)(UIImage *image, NSIndexPath *indexPath))completion {
+    UIImage *avatarImage = [GDCacheController objectForKey:URL];
+    if (avatarImage) {
+        avatarImageView.image = avatarImage;
+    }
+    else {
+        __block UIActivityIndicatorView *activityIndicatorBlock = activityIndicator;
+        __block NSIndexPath *indexPathBlock = indexPath;
+        __block NSString *URLBlock = URL;
+        [activityIndicator startAnimating];
+        [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:URL] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            UIImage *newAvatar = [UIImage imageWithData:data];
+            if (newAvatar)
+                [GDCacheController setObject:newAvatar forKey:URLBlock ofLength:[data length]];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [activityIndicatorBlock stopAnimating];
+                completion(newAvatar, indexPathBlock);
+            });
+        }] resume];
+    }
 }
 
 #pragma mark - Private Class Methods
