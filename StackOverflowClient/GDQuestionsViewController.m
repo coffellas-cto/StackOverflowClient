@@ -11,8 +11,9 @@
 #import "GDUser.h"
 #import "GDNetworkController.h"
 #import "GDQuestionCell.h"
+#import "GDTagsCell.h"
 
-@interface GDQuestionsViewController () {
+@interface GDQuestionsViewController () <UITableViewDataSource, UITableViewDelegate> {
     NSMutableArray *questionsArray;
     NSURLSessionDataTask *curDataTask;
 }
@@ -32,9 +33,15 @@
 #pragma mark - UITableView Delegates Methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    GDQuestion *q = questionsArray[indexPath.section];
+
+    if (indexPath.row == 1) {
+        GDTagsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TAGS_CELL" forIndexPath:indexPath];
+        return cell;
+    }
+    
     GDQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QUESTION_CELL" forIndexPath:indexPath];
     
-    GDQuestion *q = questionsArray[indexPath.row];
     cell.userNameLabel.text = q.owner.name;
     cell.questionTextLabel.text = q.title;
     cell.answerCountLabel.text = [@(q.answerCount) stringValue];
@@ -61,8 +68,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [questionsArray count];
 }
+
 
 #pragma mark - UISearchBarDelegate Methods
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -100,6 +112,7 @@
     
     _tableView.estimatedRowHeight = 420;
     _tableView.rowHeight = UITableViewAutomaticDimension;
+    [_tableView registerNib:[UINib nibWithNibName:@"GDTagsCell" bundle:nil] forCellReuseIdentifier:@"TAGS_CELL"];
     questionsArray = [NSMutableArray array];
 }
 
