@@ -16,6 +16,7 @@
 		9A78F0281A142DB700DC562D /* GDQuestionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A78F0271A142DB700DC562D /* GDQuestionTests.m */; };
 		9A78F02A1A142E0000DC562D /* questions.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A78F0291A142E0000DC562D /* questions.json */; };
 		9A80D8011A15501000FE424C /* GDQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A80D8001A15501000FE424C /* GDQuestionCell.m */; };
+		9A80D8061A15638D00FE424C /* UIColor+GD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A80D8051A15638D00FE424C /* UIColor+GD.m */; };
 		9AFA61E01A1173B60029386A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA61DF1A1173B60029386A /* main.m */; };
 		9AFA61E31A1173B60029386A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA61E21A1173B60029386A /* AppDelegate.m */; };
 		9AFA61E61A1173B60029386A /* StackOverflowClient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AFA61E41A1173B60029386A /* StackOverflowClient.xcdatamodeld */; };
@@ -57,6 +58,8 @@
 		9A78F0291A142E0000DC562D /* questions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = questions.json; sourceTree = "<group>"; };
 		9A80D7FF1A15501000FE424C /* GDQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDQuestionCell.h; sourceTree = "<group>"; };
 		9A80D8001A15501000FE424C /* GDQuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDQuestionCell.m; sourceTree = "<group>"; };
+		9A80D8041A15638D00FE424C /* UIColor+GD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GD.h"; sourceTree = "<group>"; };
+		9A80D8051A15638D00FE424C /* UIColor+GD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GD.m"; sourceTree = "<group>"; };
 		9AFA61DA1A1173B60029386A /* StackOverflowClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StackOverflowClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFA61DE1A1173B60029386A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AFA61DF1A1173B60029386A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,6 +100,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A80D8071A15639200FE424C /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9A80D8041A15638D00FE424C /* UIColor+GD.h */,
+				9A80D8051A15638D00FE424C /* UIColor+GD.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		9AFA61D11A1173B60029386A = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +140,7 @@
 				9AFA620D1A11772B0029386A /* Models */,
 				9AFA62091A11756D0029386A /* ViewControllers */,
 				9AFA62151A11ED900029386A /* Controllers */,
+				9A80D8071A15639200FE424C /* Categories */,
 				9AFA61DD1A1173B60029386A /* Supporting Files */,
 			);
 			path = StackOverflowClient;
@@ -325,6 +338,7 @@
 				9A78F0161A1403B700DC562D /* GDSplitViewController.m in Sources */,
 				9AFA620C1A1177060029386A /* GDUser.m in Sources */,
 				9A0B18CA1A12F70F00C1CC6C /* GDNetworkController.m in Sources */,
+				9A80D8061A15638D00FE424C /* UIColor+GD.m in Sources */,
 				9A0B18D31A1303B400C1CC6C /* GDMasterTableViewController.m in Sources */,
 				9A78F0261A14219900DC562D /* GDQuestion.m in Sources */,
 			);

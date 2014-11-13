@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *answerCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *viewCountLabel;
-@property (weak, nonatomic) IBOutlet UILabel *answeredLabel;
 @property (weak, nonatomic) IBOutlet UILabel *questionTextLabel;
+@property (nonatomic) BOOL answered;
 
 @end

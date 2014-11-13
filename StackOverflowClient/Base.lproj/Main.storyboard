@@ -36,7 +36,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="udn-o8-U5g" id="4Cb-hW-Gqy">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gqw-bb-G4R">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gqw-bb-G4R">
                                                     <rect key="frame" x="8" y="8" width="80" height="80"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -220,7 +220,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Questions tagged (semicolon separated)..." showsCancelButton="YES" id="oDJ-Bd-iBF">
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Questions tagged..." showsCancelButton="YES" id="oDJ-Bd-iBF">
                                     <rect key="frame" x="0.0" y="22" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search"/>
@@ -235,7 +235,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hn1-BF-tTy" id="Etz-Ab-b7V">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UfI-NI-q0N">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UfI-NI-q0N">
                                                     <rect key="frame" x="8" y="8" width="60" height="60"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -247,15 +247,15 @@
                                                     <rect key="frame" x="28" y="28" width="20" height="20"/>
                                                 </activityIndicatorView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQG-2N-W3Z">
-                                                    <rect key="frame" x="76" y="42" width="491" height="126"/>
+                                                    <rect key="frame" x="76" y="31" width="491" height="137"/>
                                                     <string key="text">Question textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion text</string>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNn-0l-6ny">
-                                                    <rect key="frame" x="76" y="8" width="101" height="26"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="User name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNn-0l-6ny">
+                                                    <rect key="frame" x="76" y="8" width="445" height="15"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -301,11 +301,11 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CHm-E5-FcA">
-                                                    <rect key="frame" x="529" y="12" width="57" height="18"/>
-                                                    <color key="backgroundColor" red="0.50385674930000002" green="0.51666666670000005" blue="0.51666666670000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <rect key="frame" x="529" y="7" width="57" height="18"/>
+                                                    <color key="backgroundColor" red="0.47017565618597124" green="0.64589120370370368" blue="0.36309559559559562" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answered" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mW1-zy-pBD">
-                                                    <rect key="frame" x="532" y="14" width="51" height="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Answered" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mW1-zy-pBD">
+                                                    <rect key="frame" x="532" y="9" width="51" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -313,6 +313,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="jQG-2N-W3Z" firstAttribute="leading" secondItem="UfI-NI-q0N" secondAttribute="trailing" constant="8" id="064-Ap-sTC"/>
+                                                <constraint firstItem="CHm-E5-FcA" firstAttribute="leading" secondItem="GNn-0l-6ny" secondAttribute="trailing" constant="8" id="0Hk-ve-UaN"/>
                                                 <constraint firstItem="UfI-NI-q0N" firstAttribute="centerY" secondItem="dKH-jA-ONm" secondAttribute="centerY" id="1oA-Yn-cie"/>
                                                 <constraint firstItem="GNn-0l-6ny" firstAttribute="top" secondItem="Etz-Ab-b7V" secondAttribute="top" constant="8" id="2CO-xh-hHL"/>
                                                 <constraint firstItem="z82-uK-Fvf" firstAttribute="leading" secondItem="UfI-NI-q0N" secondAttribute="trailing" constant="8" id="3ie-VD-po6"/>

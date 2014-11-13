@@ -39,7 +39,7 @@
     cell.questionTextLabel.text = q.title;
     cell.answerCountLabel.text = [@(q.answerCount) stringValue];
     cell.viewCountLabel.text = [@(q.viewCount) stringValue];
-    cell.answeredLabel.text = q.answered ? @"Answered" : @"Not answered";
+    cell.answered = q.answered;
     
     NSString *avatarURL = q.owner.profileImageURL;
     
