@@ -22,7 +22,7 @@
         newUser->_reputation = [dic[@"reputation"] unsignedIntegerValue];
         newUser->_profileImageURL = dic[@"profile_image"];
         newUser->_websiteURL = dic[@"website_url"];
-        newUser->_userType = [dic[@"user_type"] capitalizedString];
+        newUser->_userType = NSLocalizedString([dic[@"user_type"] capitalizedString], nil);
         newUser->_stackOverflowURL = dic[@"link"];
     }
     return newUser;

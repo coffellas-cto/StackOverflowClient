@@ -1,0 +1,51 @@
+
+/* Class = "IBUILabel"; text = "Unknown"; ObjectID = "4J1-KS-yj5"; */
+"4J1-KS-yj5.text" = "Неизвестно";
+
+/* Class = "IBUINavigationItem"; title = "Menu"; ObjectID = "4pE-cd-Chr"; */
+"4pE-cd-Chr.title" = "Меню";
+
+/* Class = "IBUILabel"; text = "Reputation:"; ObjectID = "5ss-yK-a5V"; */
+"5ss-yK-a5V.text" = "Репутация:";
+
+/* Class = "IBUINavigationItem"; title = "Users"; ObjectID = "99d-3m-ClJ"; */
+"99d-3m-ClJ.title" = "Пользователи";
+
+/* Class = "IBUILabel"; text = "User name"; ObjectID = "GNn-0l-6ny"; */
+"GNn-0l-6ny.text" = "Имя";
+
+/* Class = "IBUINavigationItem"; title = "Questions"; ObjectID = "Hxk-Xx-0Ey"; */
+"Hxk-Xx-0Ey.title" = "Вопросы";
+
+/* Class = "IBUISearchBar"; placeholder = "Search for some user..."; ObjectID = "MPq-8Q-M4h"; */
+"MPq-8Q-M4h.placeholder" = "Имя пользоваталя...";
+
+/* Class = "IBUILabel"; text = "http://user.site/"; ObjectID = "beW-Zf-AsM"; */
+"beW-Zf-AsM.text" = "http://user.site/";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "bmy-Oy-QBZ"; */
+"bmy-Oy-QBZ.text" = "0";
+
+/* Class = "IBUILabel"; text = "Answers:"; ObjectID = "dng-aQ-ETR"; */
+"dng-aQ-ETR.text" = "Ответы:";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "fLO-TL-hUI"; */
+"fLO-TL-hUI.text" = "0";
+
+/* Class = "IBUILabel"; text = "Question textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion text"; ObjectID = "jQG-2N-W3Z"; */
+"jQG-2N-W3Z.text" = "Question textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion textQuestion text";
+
+/* Class = "IBUILabel"; text = "Answered"; ObjectID = "mW1-zy-pBD"; */
+"mW1-zy-pBD.text" = "Решено";
+
+/* Class = "IBUILabel"; text = "User name"; ObjectID = "oC0-VR-JUx"; */
+"oC0-VR-JUx.text" = "Имя";
+
+/* Class = "IBUISearchBar"; placeholder = "Questions tagged..."; ObjectID = "oDJ-Bd-iBF"; */
+"oDJ-Bd-iBF.placeholder" = "Вопросы с тэгами...";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "sPi-jj-BRW"; */
+"sPi-jj-BRW.text" = "0";
+
+/* Class = "IBUILabel"; text = "Views:"; ObjectID = "vsk-ZD-18K"; */
+"vsk-ZD-18K.text" = "Просмотров:";

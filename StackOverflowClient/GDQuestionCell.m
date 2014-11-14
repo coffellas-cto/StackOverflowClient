@@ -25,7 +25,7 @@
 
 - (void)setAnswered:(BOOL)answered {
     _answered = answered;
-    _answeredLabel.text = answered ? @"Answered" : @"Not answered";
+    _answeredLabel.text = answered ? NSLocalizedString(@"Answered", nil) : NSLocalizedString(@"Not answered", nil);
     [self setAnsweredColor];
 }
 

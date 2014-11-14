@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  StackOverflowClient
+
+  Created by Alex G on 14.11.14.
+  Copyright (c) 2014 Alexey Gordiyenko. All rights reserved.
+*/
+
+"Questions" = "Вопросы";
+"Users" = "Пользователи";
+"Profile" = "Профиль";
+"Answered" = "Решено";
+"Not answered" = "Не решено";
+"Registered" = "Зарегистр.";
+"Unregistered" = "Не Зарег.";
+"Moderator" = "Модератор";

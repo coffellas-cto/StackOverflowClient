@@ -39,13 +39,13 @@
     NSString *cellName = nil;
     switch (indexPath.row) {
         case 0:
-            cellName = @"Questions";
+            cellName = NSLocalizedString(@"Questions", nil);
             break;
         case 1:
-            cellName = @"Users";
+            cellName = NSLocalizedString(@"Users", nil);
             break;
         case 2:
-            cellName = @"Profile";
+            cellName = NSLocalizedString(@"Profile", nil);
             break;
             
         default:
