@@ -54,7 +54,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    backgroundViewAnswered.hidden = (_answeredLabel.text == nil) || ([_answeredLabel.text isEqualToString:@""]);    
+    backgroundViewAnswered.hidden = (_answeredLabel.text == nil) || ([_answeredLabel.text isEqualToString:@""]);
 }
 
 - (void)prepareForReuse {
