@@ -11,6 +11,7 @@
 		9A0B18CA1A12F70F00C1CC6C /* GDNetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B18C91A12F70F00C1CC6C /* GDNetworkController.m */; };
 		9A0B18D31A1303B400C1CC6C /* GDMasterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B18D21A1303B400C1CC6C /* GDMasterTableViewController.m */; };
 		9A7023B51A16B16B008F447A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A7023B71A16B16B008F447A /* Localizable.strings */; };
+		9A7023B91A16BB8F008F447A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7023B81A16BB8F008F447A /* Constants.m */; };
 		9A78F0161A1403B700DC562D /* GDSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A78F0151A1403B700DC562D /* GDSplitViewController.m */; };
 		9A78F0191A140B4600DC562D /* GDQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A78F0181A140B4600DC562D /* GDQuestionsViewController.m */; };
 		9A78F0261A14219900DC562D /* GDQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A78F0251A14219900DC562D /* GDQuestion.m */; };
@@ -56,6 +57,7 @@
 		9A7023B01A16AEEE008F447A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		9A7023B11A16AEEE008F447A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		9A7023B61A16B16B008F447A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9A7023B81A16BB8F008F447A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		9A78F0141A1403B700DC562D /* GDSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDSplitViewController.h; sourceTree = "<group>"; };
 		9A78F0151A1403B700DC562D /* GDSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDSplitViewController.m; sourceTree = "<group>"; };
 		9A78F0171A140B4600DC562D /* GDQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDQuestionsViewController.h; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				9A0B18C71A12EF2900C1CC6C /* Constants.h */,
+				9A7023B81A16BB8F008F447A /* Constants.m */,
 				9AFA61DE1A1173B60029386A /* Info.plist */,
 				9AFA61DF1A1173B60029386A /* main.m */,
 				9A7023B71A16B16B008F447A /* Localizable.strings */,
@@ -367,6 +370,7 @@
 				9A80D8061A15638D00FE424C /* UIColor+GD.m in Sources */,
 				9A0B18D31A1303B400C1CC6C /* GDMasterTableViewController.m in Sources */,
 				9A78F0261A14219900DC562D /* GDQuestion.m in Sources */,
+				9A7023B91A16BB8F008F447A /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

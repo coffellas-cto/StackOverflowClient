@@ -8,6 +8,7 @@
 
 #import "GDNetworkController.h"
 #import "GDCacheController.h"
+#import "Constants.h"
 
 @interface GDNetworkController ()
 
@@ -24,18 +25,18 @@
 }
 
 + (NSURLSessionDataTask *)searchForUsersWithQuery:(NSString *)query andOffset:(NSUInteger)offset completionHandler:(void (^)(NSArray *usersJSONArray, NSString *errorString, BOOL hasMore))completion {
-    NSString *params = [[NSString stringWithFormat:@"users?inname=%@", query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *params = [[NSString stringWithFormat:@"users?inname=%@&", query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return [self performQueryWithString:params andOffset:offset completionHandler:completion];
 }
 
 + (NSURLSessionDataTask *)searchForQuestionsWithQuery:(NSString *)query andOffset:(NSUInteger)offset  completionHandler:(void (^)(NSArray *questionsJSONArray, NSString *errorString, BOOL hasMore))completion {
-    NSString *params = [[NSString stringWithFormat:@"questions?tagged=%@", query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *params = [[NSString stringWithFormat:@"questions?tagged=%@&", query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return [self performQueryWithString:params andOffset:offset completionHandler:completion];
 }
 
 + (NSURLSessionDataTask *)performQueryWithString:(NSString *)query andOffset:(NSUInteger)offset completionHandler:(void (^)(NSArray *JSONArray, NSString *errorString, BOOL hasMore))completion {
     if (offset > 0) {
-        query = [query stringByAppendingString:[NSString stringWithFormat:@"&page=%lu", offset / 30]];
+        query = [query stringByAppendingString:[NSString stringWithFormat:@"page=%lu&", offset / 30]];
     }
     
     return [self performRequestWithParams:query completionHandler:^(id results, NSString *errorString) {
@@ -47,7 +48,17 @@
             errorString = retVal ? nil : [NSString stringWithFormat:@"No 'items' object in JSON response:\n%@", results];
         }
         
+        if (errorString) {
+            NSLog(@"%@", errorString);
+        }
+        
         completion(retVal, errorString, retHasMore);
+    }];
+}
+
++ (NSURLSessionDataTask *)getSelfWithCompletion:(void (^)(NSDictionary *JSONDic, NSString *errorString))completion {
+    return [self performQueryWithString:@"me?" andOffset:0 completionHandler:^(NSArray *JSONArray, NSString *errorString, BOOL hasMore) {
+        completion([JSONArray firstObject], errorString);
     }];
 }
 
@@ -88,7 +99,9 @@
 + (NSURLSessionDataTask *)performRequestWithParams:(NSString *)params completionHandler:(void (^)(id results, NSString *errorString))completion {
     NSString *requestString = @"https://api.stackexchange.com/2.2/";
     requestString = [requestString stringByAppendingString:params];
-    requestString = [requestString stringByAppendingString:[NSString stringWithFormat:@"&order=desc&site=stackoverflow&token=%@", [[self controller] token]]];
+    requestString = [requestString stringByAppendingString:[NSString stringWithFormat:@"order=desc&site=stackoverflow&access_token=%@&key=%@", [[self controller] token], kPublicKey]];
+    
+    //NSLog(@"%@", requestString);
     
     NSURLSessionDataTask *retVal = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:requestString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSString *errorString = nil;
