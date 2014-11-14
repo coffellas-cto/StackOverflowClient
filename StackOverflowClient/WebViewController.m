@@ -48,8 +48,16 @@
     webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     webView.navigationDelegate = self;
     [self.view addSubview:webView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://stackexchange.com/oauth/dialog?client_id=%@&redirect_uri=%@&scope=no_expiry", kClientID, kRedirectURI]]]];
+    if (_mode == GDWebViewModeAuthorize) {
+        _URLString = [NSString stringWithFormat:@"https://stackexchange.com/oauth/dialog?client_id=%@&redirect_uri=%@&scope=no_expiry", kClientID, kRedirectURI];
+    }
+    
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_URLString]]];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger {
+    GDWebViewModeDefault,
+    GDWebViewModeAuthorize
+} GDWebViewMode;
+
 @interface WebViewController : UIViewController
+
+@property (nonatomic) GDWebViewMode mode;
+@property (nonatomic) NSString *URLString;
 
 @end

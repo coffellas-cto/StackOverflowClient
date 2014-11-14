@@ -23,7 +23,9 @@
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"oauth_token"];
     if (!token) {
         dispatch_after(1, dispatch_get_main_queue(), ^{
-            [((UIWindow *)[[UIApplication sharedApplication].windows firstObject]).rootViewController presentViewController:[WebViewController new] animated:YES completion:nil];
+            WebViewController *webVC = [WebViewController new];
+            webVC.mode = GDWebViewModeAuthorize;
+            [((UIWindow *)[[UIApplication sharedApplication].windows firstObject]).rootViewController presentViewController:webVC animated:YES completion:nil];
         });
     } else {
         [GDNetworkController setToken:token];
