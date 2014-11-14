@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "WebViewController.h"
+#import "GDWebViewController.h"
 #import "GDNetworkController.h"
 
 @interface AppDelegate ()
@@ -23,7 +23,7 @@
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"oauth_token"];
     if (!token) {
         dispatch_after(1, dispatch_get_main_queue(), ^{
-            WebViewController *webVC = [WebViewController new];
+            GDWebViewController *webVC = [GDWebViewController new];
             webVC.mode = GDWebViewModeAuthorize;
             [((UIWindow *)[[UIApplication sharedApplication].windows firstObject]).rootViewController presentViewController:webVC animated:YES completion:nil];
         });

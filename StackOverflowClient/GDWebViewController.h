@@ -13,7 +13,7 @@ typedef enum : NSUInteger {
     GDWebViewModeAuthorize
 } GDWebViewMode;
 
-@interface WebViewController : UIViewController
+@interface GDWebViewController : UIViewController
 
 @property (nonatomic) GDWebViewMode mode;
 @property (nonatomic) NSString *URLString;

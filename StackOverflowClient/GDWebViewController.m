@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 Alexey Gordiyenko. All rights reserved.
 //
 
-#import "WebViewController.h"
+#import "GDWebViewController.h"
 #import <WebKit/WebKit.h>
 #import "Constants.h"
 #import "GDNetworkController.h"
 
-@interface WebViewController () <WKNavigationDelegate> {
+@interface GDWebViewController () <WKNavigationDelegate> {
     WKWebView *webView;
 }
 
 @end
 
-@implementation WebViewController
+@implementation GDWebViewController
 
 #pragma mark - WKNavigationDelegate
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {

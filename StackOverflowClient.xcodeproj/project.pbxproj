@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A0B18C61A12EDBF00C1CC6C /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B18C51A12EDBF00C1CC6C /* WebViewController.m */; };
+		9A0B18C61A12EDBF00C1CC6C /* GDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B18C51A12EDBF00C1CC6C /* GDWebViewController.m */; };
 		9A0B18CA1A12F70F00C1CC6C /* GDNetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B18C91A12F70F00C1CC6C /* GDNetworkController.m */; };
 		9A0B18D31A1303B400C1CC6C /* GDMasterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B18D21A1303B400C1CC6C /* GDMasterTableViewController.m */; };
 		9A7023B51A16B16B008F447A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A7023B71A16B16B008F447A /* Localizable.strings */; };
@@ -47,8 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A0B18C41A12EDBF00C1CC6C /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		9A0B18C51A12EDBF00C1CC6C /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		9A0B18C41A12EDBF00C1CC6C /* GDWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDWebViewController.h; sourceTree = "<group>"; };
+		9A0B18C51A12EDBF00C1CC6C /* GDWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDWebViewController.m; sourceTree = "<group>"; };
 		9A0B18C71A12EF2900C1CC6C /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		9A0B18C81A12F70F00C1CC6C /* GDNetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDNetworkController.h; sourceTree = "<group>"; };
 		9A0B18C91A12F70F00C1CC6C /* GDNetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDNetworkController.m; sourceTree = "<group>"; };
@@ -200,8 +200,8 @@
 				9AFA62071A1173DA0029386A /* GDUsersViewController.m */,
 				9A78F0171A140B4600DC562D /* GDQuestionsViewController.h */,
 				9A78F0181A140B4600DC562D /* GDQuestionsViewController.m */,
-				9A0B18C41A12EDBF00C1CC6C /* WebViewController.h */,
-				9A0B18C51A12EDBF00C1CC6C /* WebViewController.m */,
+				9A0B18C41A12EDBF00C1CC6C /* GDWebViewController.h */,
+				9A0B18C51A12EDBF00C1CC6C /* GDWebViewController.m */,
 				9A0B18D11A1303B400C1CC6C /* GDMasterTableViewController.h */,
 				9A0B18D21A1303B400C1CC6C /* GDMasterTableViewController.m */,
 				9A78F0141A1403B700DC562D /* GDSplitViewController.h */,
@@ -358,7 +358,7 @@
 				9A80D8011A15501000FE424C /* GDQuestionCell.m in Sources */,
 				9AFA61E01A1173B60029386A /* main.m in Sources */,
 				9AFA62141A11ED8D0029386A /* GDCacheController.m in Sources */,
-				9A0B18C61A12EDBF00C1CC6C /* WebViewController.m in Sources */,
+				9A0B18C61A12EDBF00C1CC6C /* GDWebViewController.m in Sources */,
 				9AFA61E61A1173B60029386A /* StackOverflowClient.xcdatamodeld in Sources */,
 				9ADB3B041A156C9600B672E6 /* GDTagCell.m in Sources */,
 				9AFA62081A1173DA0029386A /* GDUsersViewController.m in Sources */,
