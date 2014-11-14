@@ -17,6 +17,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 StackOverflowClient/Constants.h
+StackOverflowClient/Constants.m
 
 # CocoaPods
 #
