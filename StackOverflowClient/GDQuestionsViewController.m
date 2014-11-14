@@ -133,7 +133,7 @@
     
     [_activityIndicator startAnimating];
     
-    curDataTask = [GDNetworkController searchForQuestionsWithQuery:searchText completionHandler:^(NSArray *questionsJSONArray, NSString *errorString) {
+    curDataTask = [GDNetworkController searchForQuestionsWithQuery:searchText andOffset:[questionsArray count] completionHandler:^(NSArray *questionsJSONArray, NSString *errorString, BOOL hasMore) {
         [_activityIndicator stopAnimating];
         NSArray *newQuestionsArray = [GDQuestion questionsWithJSONArray:questionsJSONArray];
         questionsArray = [NSMutableArray arrayWithArray:newQuestionsArray];

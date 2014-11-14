@@ -23,14 +23,32 @@
     [[self controller] setToken:token];
 }
 
-+ (NSURLSessionDataTask *)searchForUsersWithQuery:(NSString *)query completionHandler:(void (^)(NSArray *usersJSONArray, NSString *errorString))completion {
++ (NSURLSessionDataTask *)searchForUsersWithQuery:(NSString *)query andOffset:(NSUInteger)offset completionHandler:(void (^)(NSArray *usersJSONArray, NSString *errorString, BOOL hasMore))completion {
     NSString *params = [[NSString stringWithFormat:@"users?inname=%@", query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    return [self performRequestWithParams:params completionHandler:completion];
+    return [self performQueryWithString:params andOffset:offset completionHandler:completion];
 }
 
-+ (NSURLSessionDataTask *)searchForQuestionsWithQuery:(NSString *)query completionHandler:(void (^)(NSArray *questionsJSONArray, NSString *errorString))completion {
++ (NSURLSessionDataTask *)searchForQuestionsWithQuery:(NSString *)query andOffset:(NSUInteger)offset  completionHandler:(void (^)(NSArray *questionsJSONArray, NSString *errorString, BOOL hasMore))completion {
     NSString *params = [[NSString stringWithFormat:@"questions?tagged=%@", query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    return [self performRequestWithParams:params completionHandler:completion];
+    return [self performQueryWithString:params andOffset:offset completionHandler:completion];
+}
+
++ (NSURLSessionDataTask *)performQueryWithString:(NSString *)query andOffset:(NSUInteger)offset completionHandler:(void (^)(NSArray *JSONArray, NSString *errorString, BOOL hasMore))completion {
+    if (offset > 0) {
+        query = [query stringByAppendingString:[NSString stringWithFormat:@"&page=%lu", offset / 30]];
+    }
+    
+    return [self performRequestWithParams:query completionHandler:^(id results, NSString *errorString) {
+        NSArray *retVal = nil;
+        BOOL retHasMore = NO;
+        if (!errorString) {
+            retVal = results[@"items"];
+            retHasMore = [results[@"has_more"] boolValue];
+            errorString = retVal ? nil : [NSString stringWithFormat:@"No 'items' object in JSON response:\n%@", results];
+        }
+        
+        completion(retVal, errorString, retHasMore);
+    }];
 }
 
 + (void)loadAvatarWithURL:(NSString *)URL indexPath:(NSIndexPath *)indexPath activityIndicator:(UIActivityIndicatorView *)activityIndicator imageView:(UIImageView *)avatarImageView completion:(void (^)(UIImage *image, NSIndexPath *indexPath))completion {
@@ -82,12 +100,8 @@
             }
         }
         else {
-            NSDictionary *JSONdic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-            if (error == nil) {
-                retVal = JSONdic[@"items"];
-                errorString = retVal ? nil : @"No 'items' object in JSON response";
-            }
-            else {
+            retVal = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            if (error) {
                 errorString = [NSString stringWithFormat:@"Couldn't parse JSON response: %@", error.localizedDescription];
             }
         }

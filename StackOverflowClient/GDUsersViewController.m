@@ -22,13 +22,32 @@
 @implementation GDUsersViewController {
     NSMutableArray *usersArray;
     NSURLSessionDataTask *curDataTask;
+    BOOL canLoadMoreUsers;
 }
 
 #pragma mark - Private Methods
+
 - (void)cancelCurTask {
     if ([curDataTask state] != NSURLSessionTaskStateCompleted) {
         [curDataTask cancel];
     }
+}
+
+- (void)searchForUsers {
+    [_activityIndicator startAnimating];
+    canLoadMoreUsers = NO;
+    curDataTask = [GDNetworkController searchForUsersWithQuery:_searchBar.text andOffset:[usersArray count] completionHandler:^(NSArray *usersJSONArray, NSString *errorString, BOOL hasMore) {
+        [_activityIndicator stopAnimating];
+        canLoadMoreUsers = hasMore;
+        if (errorString) {
+            NSLog(@"%@", errorString);
+            return;
+        }
+        
+        NSArray *newUsersArray = [GDUser usersWithJSONArray:usersJSONArray];
+        [usersArray addObjectsFromArray:newUsersArray];
+        [_tableView reloadData];
+    }];
 }
 
 #pragma mark - UITableView Delegates Methods
@@ -66,7 +85,18 @@
     return [usersArray count];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [usersArray count] - 2) {
+        // TODO: If no users left on server, don't allow loading new
+        if (!canLoadMoreUsers)
+            return;
+        
+        [self searchForUsers];
+    }
+}
+
 #pragma mark - UISearchBarDelegate Methods
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
     
@@ -76,20 +106,8 @@
     }
     
     [self cancelCurTask];
-        
-    [_activityIndicator startAnimating];
-    
-    curDataTask = [GDNetworkController searchForUsersWithQuery:searchText completionHandler:^(NSArray *usersJSONArray, NSString *errorString) {
-        [_activityIndicator stopAnimating];
-        if (errorString) {
-            NSLog(@"%@", errorString);
-            return;
-        }
-        
-        NSArray *newUsersArray = [GDUser usersWithJSONArray:usersJSONArray];
-        usersArray = [NSMutableArray arrayWithArray:newUsersArray];
-        [_tableView reloadData];
-    }];
+    usersArray = [NSMutableArray array];
+    [self searchForUsers];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -101,6 +119,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     usersArray = [NSMutableArray array];
+    canLoadMoreUsers = YES;
 }
 
 - (void)didReceiveMemoryWarning {
