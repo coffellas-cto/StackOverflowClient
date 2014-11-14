@@ -25,7 +25,8 @@
     decisionHandler(WKNavigationActionPolicyAllow);
     
     NSString *requestString = [navigationAction.request.URL absoluteString];
-    if ([requestString containsString:@"login_success"]) {
+    NSString *lastPathComponent = [navigationAction.request.URL lastPathComponent];
+    if ([lastPathComponent isEqualToString:@"login_success"]) {
         NSArray *components = [requestString componentsSeparatedByString:@"="];
         if ([components count] > 1) {
             NSString *token = components[1];
