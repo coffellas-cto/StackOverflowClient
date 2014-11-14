@@ -7,11 +7,42 @@
 //
 
 #import "GDTagsCell.h"
+#import "GDTagCell.h"
 
-@implementation GDTagsCell
+@interface GDTagsCell () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+
+@end
+
+@implementation GDTagsCell {
+    __weak IBOutlet UICollectionView *collection;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    GDTagCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TAG_CELL" forIndexPath:indexPath];
+    cell.titleLabel.text = _tagsArray[indexPath.row];
+    return cell;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [_tagsArray count];
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UINib *nib = [UINib nibWithNibName:@"GDTagCell" bundle:nil];
+    [collection registerNib:nib forCellWithReuseIdentifier:@"TAG_CELL"];
+    GDTagCell *sizingCell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    sizingCell.titleLabel.text = _tagsArray[indexPath.row];
+    return [sizingCell intrinsicContentSize];
+}
+
+#pragma mark - Life Cycle
 
 - (void)awakeFromNib {
     // Initialization code
+    _tagsArray = [NSMutableArray array];
+    UINib *nib = [UINib nibWithNibName:@"GDTagCell" bundle:nil];
+    [collection registerNib:nib forCellWithReuseIdentifier:@"TAG_CELL"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -1,5 +1,5 @@
 //
-//  GDTagsCell.h
+//  GDTagCell.h
 //  StackOverflowClient
 //
 //  Created by Alex G on 13.11.14.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GDTagsCell : UITableViewCell
+@interface GDTagCell : UICollectionViewCell
 
-@property (nonatomic) NSArray *tagsArray;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

@@ -37,6 +37,7 @@
 
     if (indexPath.row == 1) {
         GDTagsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TAGS_CELL" forIndexPath:indexPath];
+        cell.tagsArray = q.tags;
         return cell;
     }
     
@@ -73,6 +74,38 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [questionsArray count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0)
+        return UITableViewAutomaticDimension;
+    
+    GDQuestion *q = questionsArray[indexPath.section];
+    if ([q.tags count] == 0)
+        return 0;
+
+    // Calculate the height based on tags array
+    CGFloat retVal = 4 + 17.5 + 4;
+    
+    NSUInteger breaksCount = 0;
+    CGFloat totalWidth = 0;
+    for (NSString *tag in q.tags) {
+        totalWidth += 4; // Collection view section margin
+        totalWidth += 6; // 3 points by 2 for label margins
+        CGSize labelSize = [tag boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
+                                             options:NSStringDrawingTruncatesLastVisibleLine
+                                          attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11]}
+                                             context:nil].size;
+        totalWidth += labelSize.width;
+        if (totalWidth > CGRectGetWidth(self.view.frame) + 4) {
+            breaksCount++;
+            totalWidth = 0;
+        }
+    }
+    
+    NSLog(@"Breaks count %lu", breaksCount);
+    retVal += breaksCount * (17.5 + 4);
+    return retVal;
 }
 
 
