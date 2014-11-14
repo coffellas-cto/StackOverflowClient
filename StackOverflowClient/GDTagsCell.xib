@@ -20,7 +20,7 @@
                             <size key="itemSize" width="80" height="15"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="4" minY="4" maxX="4" maxY="4"/>
+                            <inset key="sectionInset" minX="8" minY="4" maxX="0.0" maxY="4"/>
                         </collectionViewFlowLayout>
                         <connections>
                             <outlet property="dataSource" destination="KGk-i7-Jjw" id="UBI-wc-7B7"/>
@@ -35,7 +35,6 @@
                     <constraint firstAttribute="trailing" secondItem="RSd-u3-h1r" secondAttribute="trailing" id="wFV-Q1-9yh"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.9748079776763916" green="0.97477877140045166" blue="0.97479534149169922" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="collection" destination="RSd-u3-h1r" id="Ubi-Sv-0wJ"/>
             </connections>

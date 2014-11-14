@@ -21,11 +21,21 @@
 
 @synthesize answered = _answered;
 
+#pragma mark - Public Methods
+
 - (void)setAnswered:(BOOL)answered {
     _answered = answered;
     _answeredLabel.text = answered ? @"Answered" : @"Not answered";
-    backgroundViewAnswered.backgroundColor = answered ? [UIColor colorWithRGB:0x78A55D] : [UIColor colorWithRGB:0xB97568];
+    [self setAnsweredColor];
 }
+
+#pragma mark - Private Methods
+
+- (void)setAnsweredColor {
+    backgroundViewAnswered.backgroundColor = _answered ? [UIColor colorWithRGB:0x78A55D] : [UIColor colorWithRGB:0xB97568];
+}
+
+#pragma mark - Life Cycle
 
 - (void)awakeFromNib {
     // Initialization code
@@ -39,12 +49,12 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+    [self setAnsweredColor];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    backgroundViewAnswered.hidden = (_answeredLabel.text == nil) || ([_answeredLabel.text isEqualToString:@""]);
+    backgroundViewAnswered.hidden = (_answeredLabel.text == nil) || ([_answeredLabel.text isEqualToString:@""]);    
 }
 
 - (void)prepareForReuse {

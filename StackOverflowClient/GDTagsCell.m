@@ -17,6 +17,13 @@
     __weak IBOutlet UICollectionView *collection;
 }
 
+- (void)setTagsArray:(NSArray *)tagsArray {
+    _tagsArray = tagsArray;
+    [collection reloadData];
+}
+
+#pragma mark - UICollectionView Methods
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GDTagCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TAG_CELL" forIndexPath:indexPath];
     cell.titleLabel.text = _tagsArray[indexPath.row];
@@ -43,6 +50,11 @@
     _tagsArray = [NSMutableArray array];
     UINib *nib = [UINib nibWithNibName:@"GDTagCell" bundle:nil];
     [collection registerNib:nib forCellWithReuseIdentifier:@"TAG_CELL"];
+}
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    _tagsArray = [NSMutableArray array];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
