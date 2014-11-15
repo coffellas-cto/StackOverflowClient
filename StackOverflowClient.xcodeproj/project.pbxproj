@@ -19,6 +19,7 @@
 		9A78F02A1A142E0000DC562D /* questions.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A78F0291A142E0000DC562D /* questions.json */; };
 		9A80D8011A15501000FE424C /* GDQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A80D8001A15501000FE424C /* GDQuestionCell.m */; };
 		9A80D8061A15638D00FE424C /* UIColor+GD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A80D8051A15638D00FE424C /* UIColor+GD.m */; };
+		9AA913541A17F44D00CD5E93 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA913521A17F44D00CD5E93 /* NSString+HTML.m */; };
 		9ADB3AFF1A15698C00B672E6 /* GDTagsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB3AFD1A15698C00B672E6 /* GDTagsCell.m */; };
 		9ADB3B001A15698C00B672E6 /* GDTagsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ADB3AFE1A15698C00B672E6 /* GDTagsCell.xib */; };
 		9ADB3B041A156C9600B672E6 /* GDTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB3B021A156C9600B672E6 /* GDTagCell.m */; };
@@ -70,6 +71,8 @@
 		9A80D8001A15501000FE424C /* GDQuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDQuestionCell.m; sourceTree = "<group>"; };
 		9A80D8041A15638D00FE424C /* UIColor+GD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GD.h"; sourceTree = "<group>"; };
 		9A80D8051A15638D00FE424C /* UIColor+GD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GD.m"; sourceTree = "<group>"; };
+		9AA913511A17F44D00CD5E93 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		9AA913521A17F44D00CD5E93 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		9ADB3AFC1A15698C00B672E6 /* GDTagsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTagsCell.h; sourceTree = "<group>"; };
 		9ADB3AFD1A15698C00B672E6 /* GDTagsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDTagsCell.m; sourceTree = "<group>"; };
 		9ADB3AFE1A15698C00B672E6 /* GDTagsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GDTagsCell.xib; sourceTree = "<group>"; };
@@ -119,11 +122,21 @@
 		9A80D8071A15639200FE424C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				9AA913501A17F44D00CD5E93 /* NSString-HTML */,
 				9A80D8041A15638D00FE424C /* UIColor+GD.h */,
 				9A80D8051A15638D00FE424C /* UIColor+GD.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
+		};
+		9AA913501A17F44D00CD5E93 /* NSString-HTML */ = {
+			isa = PBXGroup;
+			children = (
+				9AA913511A17F44D00CD5E93 /* NSString+HTML.h */,
+				9AA913521A17F44D00CD5E93 /* NSString+HTML.m */,
+			);
+			path = "NSString-HTML";
+			sourceTree = SOURCE_ROOT;
 		};
 		9AFA61D11A1173B60029386A = {
 			isa = PBXGroup;
@@ -367,6 +380,7 @@
 				9A78F0161A1403B700DC562D /* GDSplitViewController.m in Sources */,
 				9AFA620C1A1177060029386A /* GDUser.m in Sources */,
 				9A0B18CA1A12F70F00C1CC6C /* GDNetworkController.m in Sources */,
+				9AA913541A17F44D00CD5E93 /* NSString+HTML.m in Sources */,
 				9A80D8061A15638D00FE424C /* UIColor+GD.m in Sources */,
 				9A0B18D31A1303B400C1CC6C /* GDMasterTableViewController.m in Sources */,
 				9A78F0261A14219900DC562D /* GDQuestion.m in Sources */,

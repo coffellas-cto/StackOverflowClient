@@ -7,6 +7,7 @@
 //
 
 #import "GDQuestion.h"
+#import "NSString+HTML.h"
 
 @implementation GDQuestion
 
@@ -21,7 +22,7 @@
         q->_answered = [dic[@"is_answered"] boolValue];
         q->_answerCount = [dic[@"answer_count"] unsignedIntegerValue];
         q->_link = dic[@"link"];
-        q->_title = dic[@"title"];
+        q->_title = [dic[@"title"] kv_decodeHTMLCharacterEntities];
         q->_viewCount = [dic[@"view_count"] unsignedIntegerValue];
     }
     return q;

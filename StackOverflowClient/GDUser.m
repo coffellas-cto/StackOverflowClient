@@ -7,6 +7,7 @@
 //
 
 #import "GDUser.h"
+#import "NSString+HTML.h"
 
 @implementation GDUser
 
@@ -18,7 +19,7 @@
     
     GDUser *newUser = [[GDUser alloc] initWithUserID:dic[@"user_id"]];
     if (newUser) {
-        newUser->_name = dic[@"display_name"];
+        newUser->_name = [dic[@"display_name"] kv_decodeHTMLCharacterEntities];
         newUser->_reputation = [dic[@"reputation"] unsignedIntegerValue];
         newUser->_profileImageURL = dic[@"profile_image"];
         newUser->_websiteURL = dic[@"website_url"];
