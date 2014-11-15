@@ -16,7 +16,12 @@
 #pragma mark - Getters
 
 - (NSString *)regDate {
-    return @"<unknown>";
+    if (_regDateTime == 0)
+        return @"<unknown>";
+    
+    NSDateFormatter *f = [NSDateFormatter new];
+    f.dateFormat = @"dd MMM yyyy";
+    return [f stringFromDate:[NSDate dateWithTimeIntervalSince1970:_regDateTime]];
 }
 
 #pragma mark - Public Methods
