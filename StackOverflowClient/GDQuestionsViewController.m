@@ -12,6 +12,7 @@
 #import "GDNetworkController.h"
 #import "GDQuestionCell.h"
 #import "GDTagsCell.h"
+#import "GDWebViewController.h"
 
 @interface GDQuestionsViewController () <UITableViewDataSource, UITableViewDelegate> {
     NSMutableArray *questionsArray;
@@ -117,6 +118,19 @@
     return retVal;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    GDQuestion *q = questionsArray[indexPath.section];
+    
+    NSString *URL = q.link;
+    if (URL) {
+        GDWebViewController *webVC = [GDWebViewController new];
+        webVC.URLString = URL;
+        webVC.title = q.title;
+        [self.navigationController pushViewController:webVC animated:YES];
+    } else {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
 
 #pragma mark - UISearchBarDelegate Methods
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -158,8 +172,9 @@
     questionsArray = [NSMutableArray array];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -11,6 +11,7 @@
 #import "GDUser.h"
 #import "GDCacheController.h"
 #import "GDNetworkController.h"
+#import "GDWebViewController.h"
 
 @interface GDUsersViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -87,11 +88,23 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == [usersArray count] - 2) {
-        // TODO: If no users left on server, don't allow loading new
         if (!canLoadMoreUsers)
             return;
         
         [self searchForUsers];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    GDUser *user = usersArray[indexPath.row];
+    NSString *URL = user.stackOverflowURL;
+    if (URL) {
+        GDWebViewController *webVC = [GDWebViewController new];
+        webVC.URLString = URL;
+        webVC.title = user.name;
+        [self.navigationController pushViewController:webVC animated:YES];
+    } else {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 
@@ -120,6 +133,11 @@
     // Do any additional setup after loading the view.
     usersArray = [NSMutableArray array];
     canLoadMoreUsers = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
