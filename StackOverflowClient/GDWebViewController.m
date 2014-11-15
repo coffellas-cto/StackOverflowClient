@@ -21,11 +21,11 @@
 
 #pragma mark - WKNavigationDelegate
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    NSLog(@"%@", navigationAction.request.URL);
+    NSURL *URL = navigationAction.request.URL;
     decisionHandler(WKNavigationActionPolicyAllow);
     
-    NSString *requestString = [navigationAction.request.URL absoluteString];
-    NSString *lastPathComponent = [navigationAction.request.URL lastPathComponent];
+    NSString *requestString = [URL absoluteString];
+    NSString *lastPathComponent = [URL lastPathComponent];
     if ([lastPathComponent isEqualToString:@"login_success"]) {
         NSArray *components = [requestString componentsSeparatedByString:@"="];
         if ([components count] > 1) {
