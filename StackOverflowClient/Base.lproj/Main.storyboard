@@ -456,14 +456,14 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registered since: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eS8-Rd-icd">
-                                                    <rect key="frame" x="8" y="135" width="131" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member since: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eS8-Rd-icd">
+                                                    <rect key="frame" x="8" y="135" width="114" height="21"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mm/yy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KrS-7k-Hrh">
-                                                    <rect key="frame" x="139" y="135" width="50" height="21"/>
+                                                    <rect key="frame" x="122" y="135" width="50" height="21"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -491,6 +491,24 @@
                                                 <constraint firstItem="eS8-Rd-icd" firstAttribute="leading" secondItem="cQh-d1-IHu" secondAttribute="leading" constant="8" id="yEI-Zi-mzJ"/>
                                                 <constraint firstItem="PJV-Ad-nwt" firstAttribute="centerX" secondItem="eaC-Mw-zyd" secondAttribute="centerX" id="yi9-s1-ea9"/>
                                                 <constraint firstAttribute="bottom" secondItem="eS8-Rd-icd" secondAttribute="bottom" constant="8" id="zf5-Bh-Vy8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SHOWPAGE_CELL" rowHeight="44" id="hIV-Va-teN">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hIV-Va-teN" id="nzp-vd-b6D">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show on stackoverflow.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="da2-Rj-yjm">
+                                                    <rect key="frame" x="8" y="11" width="217" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="da2-Rj-yjm" firstAttribute="leading" secondItem="nzp-vd-b6D" secondAttribute="leading" constant="8" id="iI5-b2-UCJ"/>
+                                                <constraint firstAttribute="centerY" secondItem="da2-Rj-yjm" secondAttribute="centerY" constant="0.5" id="m7t-jq-hRG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

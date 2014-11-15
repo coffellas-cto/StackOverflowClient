@@ -9,9 +9,11 @@
 #import "GDProfileViewController.h"
 #import "GDNetworkController.h"
 #import "GDUser.h"
+#import "GDWebViewController.h"
 
 @interface GDProfileViewController () {
     NSURLSessionDataTask *task;
+    NSString *userURL;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *avatarActivityIndicator;
@@ -50,6 +52,7 @@
         _typeLabel.text = user.userType;
         _reputationLabel.text = [@(user.reputation) stringValue];
         _regDateLabel.text = user.regDate;
+        userURL = user.stackOverflowURL;
         
         [GDNetworkController loadAvatarWithURL:user.profileImageURL indexPath:nil activityIndicator:_avatarActivityIndicator imageView:_avatarImageView completion:^(UIImage *image, NSIndexPath *indexPath) {
             [UIView transitionWithView:_avatarImageView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
@@ -72,6 +75,12 @@
 #pragma mark - Table view data source
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ((indexPath.row != 2) || !userURL)
+        return;
+    
+    GDWebViewController *webVC = [GDWebViewController new];
+    webVC.URLString = userURL;
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 
