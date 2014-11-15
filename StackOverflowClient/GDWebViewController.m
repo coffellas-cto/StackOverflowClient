@@ -13,6 +13,8 @@
 
 @interface GDWebViewController () <WKNavigationDelegate> {
     WKWebView *webView;
+    NSObject *context;
+    UIProgressView *progress;
 }
 
 @end
@@ -38,16 +40,51 @@
     }
 }
 
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)aContext {
+//    [super observeValueForKeyPath:keyPath ofObject:object change:change context:aContext];
+    if (aContext != (__bridge void *)(context)) {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:aContext];
+        return;
+    }
+    id newValue = [change objectForKey:NSKeyValueChangeNewKey];
+    if ([keyPath isEqualToString:@"estimatedProgress"]) {
+        progress.progress = [newValue floatValue];
+        if (progress.progress == 1) {
+            progress.progress = 0;
+            [UIView animateWithDuration:0.2 animations:^{
+                progress.alpha = 0;
+            }];
+        } else if (progress.alpha == 0) {
+            [UIView animateWithDuration:0.2 animations:^{
+                progress.alpha = 1;
+            }];
+        }
+    } else if ([keyPath isEqualToString:@"title"]) {
+        self.title = newValue;
+    }
+}
+
 #pragma mark - Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    UIView *navBar = self.navigationController.navigationBar;
+    progress = [[UIProgressView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(navBar.frame), CGRectGetWidth(self.view.frame), 4)];
+    progress.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [navBar addSubview:progress];
     
     webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
     webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     webView.navigationDelegate = self;
     [self.view addSubview:webView];
+    
+    context = [NSObject new];
+    void *ctx = (__bridge void *)(context);
+    [webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:ctx];
+    [webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:ctx];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -58,6 +95,16 @@
     }
     
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_URLString]]];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [progress removeFromSuperview];
+}
+
+- (void)dealloc {
+    [webView removeObserver:self forKeyPath:@"estimatedProgress"];
+    [webView removeObserver:self forKeyPath:@"title"];
 }
 
 - (void)didReceiveMemoryWarning {
