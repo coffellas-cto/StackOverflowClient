@@ -9,10 +9,12 @@
 #import "GDSplitViewController.h"
 #import "GDUsersViewController.h"
 #import "GDQuestionsViewController.h"
+#import "GDProfileViewController.h"
 
 @interface GDSplitViewController () <UISplitViewControllerDelegate> {
     GDUsersViewController *usersVC;
     GDQuestionsViewController *questionsVC;
+    GDProfileViewController *profileVC;
     BOOL collapsedSecondaryVC;
 }
 
@@ -32,6 +34,14 @@
     }
     
     [self showDetailViewController:questionsVC sender:self];
+}
+
+- (void)showProfileVC {
+    if (!profileVC) {
+        profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PROFILE_VC"];
+    }
+    
+    [self showDetailViewController:profileVC sender:self];
 }
 
 #pragma mark - Private Methods

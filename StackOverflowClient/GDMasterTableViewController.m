@@ -67,6 +67,7 @@
             [splitVC showUsersVC];
             break;
         case 2:
+            [splitVC showProfileVC];
             break;
             
         default:

@@ -12,5 +12,6 @@
 
 - (void)showUsersVC;
 - (void)showQuestionsVC;
+- (void)showProfileVC;
 
 @end
