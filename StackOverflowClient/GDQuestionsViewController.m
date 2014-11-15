@@ -17,8 +17,10 @@
 @interface GDQuestionsViewController () <UITableViewDataSource, UITableViewDelegate> {
     NSMutableArray *questionsArray;
     NSURLSessionDataTask *curDataTask;
+    BOOL canLoadMoreQuestions;
 }
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
@@ -29,6 +31,18 @@
     if ([curDataTask state] != NSURLSessionTaskStateCompleted) {
         [curDataTask cancel];
     }
+}
+
+- (void)searchForQuestions {
+    [_activityIndicator startAnimating];
+    canLoadMoreQuestions = NO;
+    curDataTask = [GDNetworkController searchForQuestionsWithQuery:_searchBar.text andOffset:[questionsArray count] completionHandler:^(NSArray *questionsJSONArray, NSString *errorString, BOOL hasMore) {
+        canLoadMoreQuestions = hasMore;
+        [_activityIndicator stopAnimating];
+        NSArray *newQuestionsArray = [GDQuestion questionsWithJSONArray:questionsJSONArray];
+        [questionsArray addObjectsFromArray:newQuestionsArray];
+        [_tableView reloadData];
+    }];
 }
 
 #pragma mark - UITableView Delegates Methods
@@ -132,6 +146,15 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == [questionsArray count] - 2) {
+        if (!canLoadMoreQuestions)
+            return;
+        
+        [self searchForQuestions];
+    }
+}
+
 #pragma mark - UISearchBarDelegate Methods
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
@@ -144,15 +167,7 @@
     }
     
     [self cancelCurTask];
-    
-    [_activityIndicator startAnimating];
-    
-    curDataTask = [GDNetworkController searchForQuestionsWithQuery:searchText andOffset:[questionsArray count] completionHandler:^(NSArray *questionsJSONArray, NSString *errorString, BOOL hasMore) {
-        [_activityIndicator stopAnimating];
-        NSArray *newQuestionsArray = [GDQuestion questionsWithJSONArray:questionsJSONArray];
-        questionsArray = [NSMutableArray arrayWithArray:newQuestionsArray];
-        [_tableView reloadData];
-    }];
+    [self searchForQuestions];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -170,6 +185,7 @@
     _tableView.rowHeight = UITableViewAutomaticDimension;
     [_tableView registerNib:[UINib nibWithNibName:@"GDTagsCell" bundle:nil] forCellReuseIdentifier:@"TAGS_CELL"];
     questionsArray = [NSMutableArray array];
+    canLoadMoreQuestions = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

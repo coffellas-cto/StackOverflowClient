@@ -371,6 +371,7 @@
                     <navigationItem key="navigationItem" title="Questions" id="Hxk-Xx-0Ey"/>
                     <connections>
                         <outlet property="activityIndicator" destination="IJB-wK-ebR" id="7Zj-lh-3LA"/>
+                        <outlet property="searchBar" destination="oDJ-Bd-iBF" id="KCf-Uu-47O"/>
                         <outlet property="tableView" destination="1wR-k6-MOn" id="elw-M3-iba"/>
                     </connections>
                 </viewController>
