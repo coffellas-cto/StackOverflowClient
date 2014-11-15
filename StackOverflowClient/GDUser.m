@@ -9,7 +9,15 @@
 #import "GDUser.h"
 #import "NSString+HTML.h"
 
-@implementation GDUser
+@implementation GDUser {
+    NSTimeInterval _regDateTime;
+}
+
+#pragma mark - Getters
+
+- (NSString *)regDate {
+    return @"<unknown>";
+}
 
 #pragma mark - Public Methods
 
@@ -25,6 +33,7 @@
         newUser->_websiteURL = dic[@"website_url"];
         newUser->_userType = NSLocalizedString([dic[@"user_type"] capitalizedString], nil);
         newUser->_stackOverflowURL = dic[@"link"];
+        newUser->_regDateTime = [dic[@"creation_date"] doubleValue];
     }
     return newUser;
 }

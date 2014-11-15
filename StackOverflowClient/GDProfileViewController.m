@@ -7,8 +7,20 @@
 //
 
 #import "GDProfileViewController.h"
+#import "GDNetworkController.h"
+#import "GDUser.h"
 
-@interface GDProfileViewController ()
+@interface GDProfileViewController () {
+    NSURLSessionDataTask *task;
+}
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *avatarActivityIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *siteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet UIView *typeBackgroundView;
+@property (weak, nonatomic) IBOutlet UILabel *reputationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *regDateLabel;
 
 @end
 
@@ -17,11 +29,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    _avatarImageView.layer.cornerRadius = 100;
+    _avatarImageView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
+    _typeBackgroundView.layer.cornerRadius = 3;
+    [_avatarActivityIndicator startAnimating];
+    _nameLabel.text = nil;
+    _siteLabel.text = nil;
+    _typeLabel.text = @"Unknown";
+    _reputationLabel.text = nil;
+    _regDateLabel.text = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    task = [GDNetworkController getSelfWithCompletion:^(NSDictionary *JSONDic, NSString *errorString) {
+        GDUser *user = [GDUser userWithJSONDictionary:JSONDic];
+        _nameLabel.text = user.name;
+        self.title = user.name;
+        _siteLabel.text = user.websiteURL;
+        _typeLabel.text = user.userType;
+        _reputationLabel.text = [@(user.reputation) stringValue];
+        _regDateLabel.text = user.regDate;
+        
+        [GDNetworkController loadAvatarWithURL:user.profileImageURL indexPath:nil activityIndicator:_avatarActivityIndicator imageView:_avatarImageView completion:^(UIImage *image, NSIndexPath *indexPath) {
+            [UIView transitionWithView:_avatarImageView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                _avatarImageView.image = image;
+            } completion:nil];
+        }];
+    }];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [task cancel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,70 +71,8 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
-//}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

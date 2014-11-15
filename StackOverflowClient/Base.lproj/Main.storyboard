@@ -402,10 +402,15 @@
                                                         <constraint firstAttribute="width" constant="200" id="l5L-Zg-jPB"/>
                                                     </constraints>
                                                 </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="PLx-d7-BQz">
+                                                    <rect key="frame" x="282" y="90" width="37" height="37"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="1tR-pv-2Ik" firstAttribute="top" secondItem="NrB-o3-tec" secondAttribute="top" constant="8" id="PYR-ak-6bw"/>
+                                                <constraint firstItem="1tR-pv-2Ik" firstAttribute="centerY" secondItem="PLx-d7-BQz" secondAttribute="centerY" id="gxj-bt-c9w"/>
                                                 <constraint firstAttribute="centerX" secondItem="1tR-pv-2Ik" secondAttribute="centerX" id="j16-Bh-Qg6"/>
+                                                <constraint firstItem="1tR-pv-2Ik" firstAttribute="centerX" secondItem="PLx-d7-BQz" secondAttribute="centerX" id="xKi-dU-b2d"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -497,6 +502,16 @@
                             <outlet property="delegate" destination="mAn-8g-8Hx" id="eaD-4V-4rj"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="avatarActivityIndicator" destination="PLx-d7-BQz" id="LNg-A3-4a2"/>
+                        <outlet property="avatarImageView" destination="1tR-pv-2Ik" id="j4J-nT-Blb"/>
+                        <outlet property="nameLabel" destination="0T1-Be-SP2" id="5wR-rs-kC1"/>
+                        <outlet property="regDateLabel" destination="KrS-7k-Hrh" id="VOD-vR-WkH"/>
+                        <outlet property="reputationLabel" destination="a48-px-Muo" id="H7p-zB-8OG"/>
+                        <outlet property="siteLabel" destination="U5Z-J5-7ih" id="89j-9g-LiQ"/>
+                        <outlet property="typeBackgroundView" destination="PJV-Ad-nwt" id="gGT-1M-DDq"/>
+                        <outlet property="typeLabel" destination="eaC-Mw-zyd" id="zrf-oZ-dSB"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cpZ-bz-rql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

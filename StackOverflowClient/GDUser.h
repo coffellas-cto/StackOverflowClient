@@ -17,6 +17,7 @@
 @property (nonatomic, readonly) NSUInteger userID;
 @property (nonatomic, readonly) NSUInteger reputation;
 @property (nonatomic, readonly) NSString *userType;
+@property (nonatomic, readonly) NSString *regDate;
 
 + (GDUser *)userWithJSONDictionary:(NSDictionary *)JSONdictionary;
 + (NSArray *)usersWithJSONArray:(NSArray *)JSONArray;
